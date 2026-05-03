@@ -1,1 +1,0 @@
-/home/ehab/Documents/ITI_9Months/ROS/02-Lab1/build/velocity_pkg/ament_cmake_environment_hooks/local_setup.sh
