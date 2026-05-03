@@ -11,7 +11,7 @@ source /opt/ros/humble/setup.bash
 
 ## Create C++ Node
 ```sh
-ros2 pkg create --build-type ament_cmake cpp_node --dependencies rclcpp
+ros2 pkg create --build-type ament_cmake cpp_node --node-name hello_node --dependencies rclcpp
 ```
 
 ### Write the C++ Code to src/hello_node.cpp
@@ -50,4 +50,9 @@ ros2 pkg list | grep cpp_node
 # run
 ros2 run my_python_pkg hello_node
 ros2 run cpp_node hello_node
+
+# Insect
+rqt_graph
+
+# Act as a subscriber on a topic
 ```
