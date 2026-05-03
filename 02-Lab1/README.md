@@ -15,6 +15,128 @@
 >     *   **Feeding Data:** Access nested fields directly using dot notation (e.g., `msg.pose.pose.position.x = 1.0`, `msg->pose.pose.position.x = 1.0;`).
 >     *   **Tip:** Use `ros2 interface show <message_type>` to see the exact structure and field names.
 
+---
+
+## Build & Run
+
+### Project Structure
+```
+ehab@HP:~/Documents/ITI_9Months/ROS/02-Lab1$ tree src/
+src/
+├── imu_csv_pkg
+│   ├── imu_csv_pkg
+│   │   ├── imu_csv.py
+│   │   ├── __init__.py
+│   │   └── __pycache__
+│   │       ├── imu_csv.cpython-310.pyc
+│   │       └── __init__.cpython-310.pyc
+│   ├── imu_data.csv
+│   ├── package.xml
+│   ├── resource
+│   │   └── imu_csv_pkg
+│   ├── setup.cfg
+│   ├── setup.py
+│   └── test
+│       ├── test_copyright.py
+│       ├── test_flake8.py
+│       └── test_pep257.py
+├── obstacle_detection
+│   ├── launch
+│   │   └── obstacle.launch.py
+│   ├── obstacle_detection
+│   │   ├── __init__.py
+│   │   ├── obsDetect.py
+│   │   ├── obsDetectSub.py
+│   │   └── __pycache__
+│   │       ├── __init__.cpython-310.pyc
+│   │       ├── obsDetect.cpython-310.pyc
+│   │       └── obsDetectSub.cpython-310.pyc
+│   ├── package.xml
+│   ├── resource
+│   │   └── obstacle_detection
+│   ├── setup.cfg
+│   ├── setup.py
+│   └── test
+│       ├── test_copyright.py
+│       ├── test_flake8.py
+│       └── test_pep257.py
+├── odometry_path_pkg
+│   ├── CMakeLists.txt
+│   ├── include
+│   │   └── odometry_path_pkg
+│   ├── package.xml
+│   └── src
+│       └── odo_path.cpp
+├── temp_pub
+│   ├── CMakeLists.txt
+│   ├── include
+│   │   └── temp_pub
+│   ├── launch
+│   │   └── temp.launch.py
+│   ├── package.xml
+│   └── src
+│       └── tempPublisher.cpp
+└── velocity_pkg
+    ├── CMakeLists.txt
+    ├── include
+    │   └── velocity_pkg
+    ├── package.xml
+    └── src
+        └── velocity_sub.cpp
+```
+
+---
+
+### Build
+
+```sh
+colcon build --symlink-install
+source install/setup.bash
+```
+
+---
+
+### Run
+#### 1. Temperature Publisher
+```sh
+# using the launch file
+ros2 launch temp_pub temp.launch.py
+# see the messages from another terminal
+ros2 topic echo /cpu_temp
+```
+
+#### 2. Obstacle Detectionros Publisher & Subscriber
+
+```sh
+# using the launch file
+ros2 launch obstacle_detection obstacle.launch.py
+# see the messages from another terminal
+ros2 topic echo /cmd/stop
+```
+
+#### 3. Velocity Limiter
+```sh
+ros2 run velocity_pkg velocity_sub
+# from another terninal, run:
+ros2 run teleop_twist_keyboard teleop_twist_keyboard
+```
+
+#### 4. Odometry Path Publisher
+```sh
+ros2 run odometry_path_pkg odo_path
+# see the messages from another terminal
+ros2 topic echo /odom
+```
+
+#### 5. IMU CSV Playback Node
+
+```sh
+ros2 run imu_csv_pkg imu_csv
+# see the messages from another terminal
+ros2 topic echo /imu/data
+```
+
+---
 
 ## Task 1: CPU Temperature Publisher
 **Objective:** Build a ROS 2 C++ node to publish live CPU thermals.
@@ -182,120 +304,4 @@ linear_acceleration_covariance:
     [0.0, 0.0, 0.0, 
     0.0, 0.0, 0.0, 
     0.0, 0.0, 0.0]
-```
-
----
-
-## Build & Run
-
-```
-ehab@HP:~/Documents/ITI_9Months/ROS/02-Lab1$ tree src/
-src/
-├── imu_csv_pkg
-│   ├── imu_csv_pkg
-│   │   ├── imu_csv.py
-│   │   ├── __init__.py
-│   │   └── __pycache__
-│   │       ├── imu_csv.cpython-310.pyc
-│   │       └── __init__.cpython-310.pyc
-│   ├── imu_data.csv
-│   ├── package.xml
-│   ├── resource
-│   │   └── imu_csv_pkg
-│   ├── setup.cfg
-│   ├── setup.py
-│   └── test
-│       ├── test_copyright.py
-│       ├── test_flake8.py
-│       └── test_pep257.py
-├── obstacle_detection
-│   ├── launch
-│   │   └── obstacle.launch.py
-│   ├── obstacle_detection
-│   │   ├── __init__.py
-│   │   ├── obsDetect.py
-│   │   ├── obsDetectSub.py
-│   │   └── __pycache__
-│   │       ├── __init__.cpython-310.pyc
-│   │       ├── obsDetect.cpython-310.pyc
-│   │       └── obsDetectSub.cpython-310.pyc
-│   ├── package.xml
-│   ├── resource
-│   │   └── obstacle_detection
-│   ├── setup.cfg
-│   ├── setup.py
-│   └── test
-│       ├── test_copyright.py
-│       ├── test_flake8.py
-│       └── test_pep257.py
-├── odometry_path_pkg
-│   ├── CMakeLists.txt
-│   ├── include
-│   │   └── odometry_path_pkg
-│   ├── package.xml
-│   └── src
-│       └── odo_path.cpp
-├── temp_pub
-│   ├── CMakeLists.txt
-│   ├── include
-│   │   └── temp_pub
-│   ├── launch
-│   │   └── temp.launch.py
-│   ├── package.xml
-│   └── src
-│       └── tempPublisher.cpp
-└── velocity_pkg
-    ├── CMakeLists.txt
-    ├── include
-    │   └── velocity_pkg
-    ├── package.xml
-    └── src
-        └── velocity_sub.cpp
-```
-
-### Build
-
-```sh
-colcon build --symlink-install
-source install/setup.bash
-```
-
-### Run
-#### 1. Temperature Publisher
-```sh
-# using the launch file
-ros2 launch temp_pub temp.launch.py
-# see the messages from another terminal
-ros2 topic echo /cpu_temp
-```
-
-#### 2. Obstacle Detectionros Publisher & Subscriber
-
-```sh
-# using the launch file
-ros2 launch obstacle_detection obstacle.launch.py
-# see the messages from another terminal
-ros2 topic echo /cmd/stop
-```
-
-#### 3. Velocity Limiter
-```sh
-ros2 run velocity_pkg velocity_sub
-# from another terninal, run:
-ros2 run teleop_twist_keyboard teleop_twist_keyboard
-```
-
-#### 4. Odometry Path Publisher
-```sh
-ros2 run odometry_path_pkg odo_path
-# see the messages from another terminal
-ros2 topic echo /odom
-```
-
-#### 5. IMU CSV Playback Node
-
-```sh
-ros2 run imu_csv_pkg imu_csv
-# see the messages from another terminal
-ros2 topic echo /imu/data
 ```
