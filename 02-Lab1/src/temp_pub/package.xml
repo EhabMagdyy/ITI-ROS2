@@ -18,6 +18,13 @@
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
 
+  <!-- Needed to run the launch file -->
+  <exec_depend>launch</exec_depend>
+  <exec_depend>launch_ros</exec_depend>
+
+  <!-- Add exec_depend for every other package whose nodes you depend on (launch them), for example: turtlesim -->
+  <!-- <exec_depend>turtlesim</exec_depend> -->
+
   <export>
     <build_type>ament_cmake</build_type>
   </export>

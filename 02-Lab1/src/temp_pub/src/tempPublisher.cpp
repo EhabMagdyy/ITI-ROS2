@@ -14,11 +14,11 @@ class TempPublisher : public rclcpp::Node {
 public:
     TempPublisher() : Node("temp_pub"){
         publisher_ = this->create_publisher<sensor_msgs::msg::Temperature>("/cpu_temp", 5);
-        timer_ = this->create_wall_timer(1000ms, std::bind(&TempPublisher::timer_callback, this));
+        timer_ = this->create_wall_timer(1000ms, std::bind(&TempPublisher::publisher_callback, this));
     }
 
 private:
-    void timer_callback(){
+    void publisher_callback(){
         // Reading CPU temperature
         int fd = open("/sys/class/thermal/thermal_zone0/temp", O_RDONLY);
         if (fd < 0) {

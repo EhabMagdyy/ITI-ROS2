@@ -27,8 +27,7 @@ endif()
 
 ament_package()
 
+find_package(ament_cmake REQUIRED)
 
-add_executable(tempPublisher src/tempPublisher.cpp)
-ament_target_dependencies(tempPublisher rclcpp sensor_msgs nav_msgs geometry_msgs std_msgs)
-
-install(TARGETS tempPublisher DESTINATION lib/${PROJECT_NAME})
+# Install the launch directory so ros2 launch can find the file
+install(DIRECTORY launch/ DESTINATION share/${PROJECT_NAME}/launch)
