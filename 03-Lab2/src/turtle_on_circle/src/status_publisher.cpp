@@ -36,7 +36,6 @@ private:
         if(prev_theta_ > 0 && current_pose_.theta < 0 && (prev_theta_ - current_pose_.theta) > 3.0) {
             lap_count_++;
         }
-        prev_theta_ = current_pose_.theta;
         status.lap_count = lap_count_;
 
         // check if the turtle is moving (if theta changes)
@@ -46,6 +45,8 @@ private:
         else {
             status.state = "stopped";
         }
+
+        prev_theta_ = current_pose_.theta;
 
         // Dummy
         status.temperature = 33.5;
