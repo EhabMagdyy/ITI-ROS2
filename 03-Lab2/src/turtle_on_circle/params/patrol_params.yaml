@@ -1,0 +1,8 @@
+patrol_controller:
+  ros__parameters:
+    linear_speed: 1.5
+    angular_speed: 1.0
+
+status_publisher:
+  ros__parameters:
+    status_rate: 5.0
