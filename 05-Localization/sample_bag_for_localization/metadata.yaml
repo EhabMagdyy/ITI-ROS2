@@ -1,0 +1,52 @@
+rosbag2_bagfile_information:
+  version: 9
+  storage_identifier: mcap
+  duration:
+    nanoseconds: 705843865258
+  starting_time:
+    nanoseconds_since_epoch: 1780765668059313714
+  message_count: 96683
+  topics_with_message_count:
+  - topic_metadata:
+      name: /imu/data/bag
+      type: sensor_msgs/msg/Imu
+      serialization_format: cdr
+      offered_qos_profiles: "- history: 1\n  depth: 5\n  reliability: 2\n  durability:\
+        \ 2\n  deadline:\n    sec: 9223372036\n    nsec: 854775807\n  lifespan:\n\
+        \    sec: 9223372036\n    nsec: 854775807\n  liveliness: 1\n  liveliness_lease_duration:\n\
+        \    sec: 9223372036\n    nsec: 854775807\n  avoid_ros_namespace_conventions:\
+        \ false"
+    message_count: 69675
+  - topic_metadata:
+      name: /odometry/gps/bag
+      type: nav_msgs/msg/Odometry
+      serialization_format: cdr
+      offered_qos_profiles: "- history: 1\n  depth: 5\n  reliability: 2\n  durability:\
+        \ 2\n  deadline:\n    sec: 9223372036\n    nsec: 854775807\n  lifespan:\n\
+        \    sec: 9223372036\n    nsec: 854775807\n  liveliness: 1\n  liveliness_lease_duration:\n\
+        \    sec: 9223372036\n    nsec: 854775807\n  avoid_ros_namespace_conventions:\
+        \ false"
+    message_count: 3479
+  - topic_metadata:
+      name: /odometry/wheel/bag
+      type: nav_msgs/msg/Odometry
+      serialization_format: cdr
+      offered_qos_profiles: "- history: 1\n  depth: 5\n  reliability: 2\n  durability:\
+        \ 2\n  deadline:\n    sec: 9223372036\n    nsec: 854775807\n  lifespan:\n\
+        \    sec: 9223372036\n    nsec: 854775807\n  liveliness: 1\n  liveliness_lease_duration:\n\
+        \    sec: 9223372036\n    nsec: 854775807\n  avoid_ros_namespace_conventions:\
+        \ false"
+    message_count: 23529
+  compression_format: ''
+  compression_mode: ''
+  relative_file_paths:
+  - sample_bag_for_localization_2_0.mcap
+  files:
+  - path: sample_bag_for_localization_2_0.mcap
+    starting_time:
+      nanoseconds_since_epoch: 1780765668059313714
+    duration:
+      nanoseconds: 705843865258
+    message_count: 96683
+  custom_data: this yaml is refactored from jazzy style for compatibility with humble
+  ros_distro: humble
